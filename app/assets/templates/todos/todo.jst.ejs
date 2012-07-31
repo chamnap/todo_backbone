@@ -1,0 +1,6 @@
+<% if (todo.isCompleted()) { %>
+  <input type="checkbox" checked />
+<% } else { %>
+  <input type="checkbox" />
+<% } %>
+<%= todo.get('name') %>
