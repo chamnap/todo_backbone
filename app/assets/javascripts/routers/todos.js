@@ -6,7 +6,7 @@ TodoApp.Routers.Todos = Backbone.Router.extend({
   
   initialize: function() {
     this.todos = new TodoApp.Collections.Todos();
-    this.todos.fetch();
+    this.todos.reset($('#todo_app').data('todos'));
   },
   
   index: function() {

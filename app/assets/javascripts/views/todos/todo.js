@@ -4,7 +4,7 @@ TodoApp.Views.Todo = Backbone.View.extend({
   template: JST['todos/todo'],
   
   events: {
-    'change input:checkbox': 'toggleCompleted'
+    'click li span': 'toggleCompleted'
   },
   
   initialize: function() {

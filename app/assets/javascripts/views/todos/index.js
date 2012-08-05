@@ -21,15 +21,33 @@ TodoApp.Views.TodosIndex = Backbone.View.extend({
   
   createTodo: function(event) {
     event.preventDefault();
-    todo_name = $('#new_todo_name').val();
-    if (todo_name) {
-      this.collection.create({name: todo_name, state: 'incomplete'});
-      $('#new_todo')[0].reset();
-    }
+    var attributes = { name: $('#new_todo_name').val(), state: 'incomplete' };
+    this.collection.create(
+      attributes,
+      {
+        wait: true,
+        success: function() {
+          $('#new_todo')[0].reset();
+        },
+        error: this.handleError
+      }
+    );
   },
   
   appendTodo: function(todo) {
     var view = new TodoApp.Views.Todo({ model: todo });
-    $('#todos').append(view.render().el);
+    this.$('#todos').append(view.render().el);
+  },
+  
+  handleError: function(todo, response) {
+    if (response.status == 422) {
+      var errors = $.parseJSON(response.responseText).errors;
+      for(attribute in errors) {
+        for(var i = 0; i<errors[attribute].length;i++) {
+          alert(attribute + ' ' + errors[attribute][i]);
+        }
+      }
+    }
   }
 });
+
