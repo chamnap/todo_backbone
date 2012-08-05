@@ -1,4 +1,5 @@
 TodoApp.Models.Todo = Backbone.Model.extend({
+  url: '/api/todos',
   toggle: function() {
     if (this.get('state') === 'completed') {
       this.set('state', 'incomplete');
