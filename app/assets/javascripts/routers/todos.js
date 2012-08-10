@@ -10,8 +10,11 @@ TodoApp.Routers.Todos = Backbone.Router.extend({
   },
   
   index: function() {
-    var view = new TodoApp.Views.TodosIndex({ collection: this.todos });
-    $('#todo_app').html(view.render().el);
+    var todosIndexView = new TodoApp.Views.TodosIndex({ collection: this.todos });
+    $('#todo_app').append(todosIndexView.render().el);
+    
+    var todoSearchView = new TodoApp.Views.TodoSearch({ collection: this.todos });
+    $('#todo_app').append(todoSearchView.render().el);
   },
   
   show: function(id) {

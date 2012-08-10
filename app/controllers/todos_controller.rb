@@ -2,7 +2,12 @@ class TodosController < ApplicationController
  respond_to :json
 
   def index
-    respond_with Todo.all
+    @todos = if params[:q].present?
+      Todo.search_by_name(params[:q])
+    else
+      Todo.all
+    end
+    respond_with @todos
   end
 
   def show

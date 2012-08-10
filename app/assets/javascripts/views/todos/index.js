@@ -1,6 +1,7 @@
 TodoApp.Views.TodosIndex = Backbone.View.extend({
 
   template: JST['todos/index'],
+  tagName: 'article',
   
   events: {
     'submit #new_todo': 'createTodo'

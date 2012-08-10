@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'backbone-on-rails'
 gem 'haml-rails'
 gem 'thin'
+gem 'pg_search'
 
 group :development, :test do
   gem 'jasmine'
